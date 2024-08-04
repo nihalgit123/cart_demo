@@ -1,7 +1,9 @@
 
 import 'package:cart/model.dart';
 import 'package:cart/cart.dart';
+import 'package:cart/provider/cartprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -11,19 +13,19 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<Product> cart = [];
+  // List<Product> cart = [];
 
-  void add(Product product) {
-    setState(() {
-      cart.add(product);
-    });
-  }
+  // void add(Product product) {
+  //   setState(() {
+  //     cart.add(product);
+  //   });
+  // }
 
-  void remove(Product product) {
-    setState(() {
-      cart.remove(product);
-    });
-  }
+  // void remove(Product product) {
+  //   setState(() {
+  //     cart.remove(product);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +33,27 @@ class _ProductPageState extends State<ProductPage> {
       appBar: AppBar(
         title: Text("Products"),
         actions: [
-          IconButton(
-            icon: Icon(Icons.arrow_circle_right_rounded),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CartPage(
-                    cart: cart,
-                    onDelete: remove,
+          Stack(
+            alignment: Alignment.topRight,
+            children:[ IconButton(
+              icon: Icon(Icons.arrow_circle_right_rounded),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartPage(),
                   ),
-                ),
-              );
-            },
-          ),
+                );
+              },
+            ),
+             CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 12,
+              child: Consumer<CartProvider>(
+                builder: (context, value, child) => 
+                 Text(value.providercart.length.toString())),
+            )
+        ]),
         ],
       ),
       body: GridView.builder(
@@ -67,7 +76,8 @@ class _ProductPageState extends State<ProductPage> {
                 Text("Rs ${product.price}", style: TextStyle(color: Colors.grey)),
                 ElevatedButton(
                   onPressed: () {
-                    add(product);
+                    context.read<CartProvider>().addcart(product);
+                    // add(product);
                   },
                   child: Text("Add to cart"),
                 ),
