@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "968300287068",
+    "project_id": "cart-ca8bf",
+    "storage_bucket": "cart-ca8bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968300287068:android:e936c626b2ef56427cc299",
+        "android_client_info": {
+          "package_name": "com.example.cart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC458J4BbXEZetGRqBrKmuNYiat6oRRV78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
